@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calci</title>
+    <style>
+        body{
+             
+             text-align: center;
+          
+             
+        }
+        table{
+            border: 4px;
+            border-style: groove;
+            margin-left: 35%;
+        
+        }
+      
+        button{
+            background-color: grey;
+            color: white;
+            width: 80px;
+            text-align: center;
+            font-size: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px black;
+
+         }
+         #txt{
+            width: 320px;
+            height: 30px;
+            border: 4px;
+            border-style: groove;
+            font-size: 30px;
+            font-weight: 100;
+            text-align: right;
+         }
+        h1:hover, button:hover {
+            background-color: black;
+            color: white;
+}
+button.op{
+    background-color: yellow;
+    color: black;
+}
+button.opeq{
+    width: 235px;
+}
+button.op:hover{
+    background-color: red;
+    color: white;
+}
+button#cancel{
+    background-color: red;
+    color: white;
+}
+button#cancel:hover{
+    background-color: blue;
+    color: white;
+}
+table{
+    text-align: center;
+
+}
+.txt{
+    width: 250px;
+    height: 30px;
+    font-size: 25px;
+    font-weight: 400;
+}
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+
+    <table style="text-align: center;">
+        <tr>
+            <td colspan = 4>
+            <input type = "text" value=""  id="result" class="txt" >
+        </td>
+        </tr>
+        <tr>
+            <td>
+                <button onclick="getValue(1)">1</button>
+            </td>
+            <td>
+                <button onclick="getValue(2)">2</button>
+            </td>
+            <td>
+                <button onclick="getValue(3)">3</button>
+            </td>
+            <td>
+                <button onClick ="operation('+')" class="op">+</button>
+            </td>
+           
+        </tr>
+
+        <tr>
+            <td>
+                <button onclick="getValue(4)">4</button>
+            </td>
+            <td>
+                <button onclick="getValue(5)">5</button>
+            </td>
+            <td>
+                <button onclick="getValue(6)">6</button>
+            </td>
+            <td>
+                <button onClick ="operation('*')" class="op">*</button>
+            </td>
+           
+        </tr>
+
+        <tr>
+            <td>
+                <button onclick="getValue(7)">7</button>
+            </td>
+            <td>
+                <button onclick="getValue(8)">8</button>
+            </td>
+            <td>
+                <button onclick="getValue(9)">9</button>
+            </td>
+            <td>
+                <button onClick ="operation('-')" class="op">-</button>
+            </td>
+           
+        </tr>
+
+        <tr>
+            <td>
+                <button onclick="back()">Back</button>
+            </td>
+            <td>
+                <button onclick="getValue(0)">0</button>
+            </td>
+            <td>
+                <button onclick="percent()">%</button>
+            </td>
+            <td>
+                <button onClick ="operation('/')" class="op">/</button>
+            </td>
+           
+        </tr>
+        <tr>
+            <td>
+                <button onclick="clearText()" id="cancel">C</button>
+            </td>
+            <td colspan="4">
+                <button onclick="equalsTo()" class="opeq" >=</button>
+            </td>
+        </tr>
+    </table>
+
+   
+    <script>
+        var num1 = "",num2 = "",res = "",op="";
+        function getValue(a){
+            var value = document.getElementById("result");
+            
+       
+            if(op == "")
+                {num1 += a ;
+                    document.getElementById("result").value = num1;
+                }
+            else if(op != "=") 
+            {
+                    num2 += a;
+                    document.getElementById("result").value = num2;
+           
+            }
+           
+            // console.log(num1);
+            // console.log(num2);
+        }
+        function back(){
+        
+        document.getElementById("result").value = document.getElementById("result").value.substring(0,document.getElementById("result").value.length-1);
+        console.log(document.getElementById("result").value/10);
+        }
+
+        function percent(){
+            document.getElementById("result").value = document.getElementById("result").value/100;
+        }
+    
+        
+        function clearText(){
+            document.getElementById("result").value = "";
+            num1 = "";
+            num2 = "";
+            op="";
+            res="";
+        }
+
+        function operation(operator){
+           op = operator;
+            
+        }
+
+        function equalsTo(){
+            if(op == '+')
+                res = parseFloat( num1) + parseFloat( num2);
+            else if(op == '-')
+                    res = num1 - num2;
+            else if(op == '*')
+                    res = num1 * num2;
+            else if(op == '/')
+                    res = num1 / num2;
+
+        
+            document.getElementById("result").value = res;
+            console.log(res);
+            num1=res;
+            res="";
+            op="";
+            num2="";
+        }
+    </script>
+
+</body>
+</html>
